@@ -51,3 +51,19 @@ func tribonacci(n int) int {
     }
     return trib
 }
+
+func tribonacciMemmo(n int) int {
+    if (n == 0) {
+        return 0
+    } else if (n <= 2) {
+        return 1
+    }
+    
+    memCache := make([]int, n + 1)
+    memCache[0], memCache[1], memCache[2] = 0, 1, 1
+    for i := 3; i <= n; i += 1 {
+        memCache[i] = memCache[i - 3] + memCache[i - 2] + memCache[i - 1]
+    }
+    return memCache[n]
+    
+}
